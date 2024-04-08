@@ -1,4 +1,4 @@
-from dash import Dash, Input, Output, State, html, dcc, no_update
+from dash import Dash, Input, Output, State, html, dcc
 import dash
 from dash_extensions import Keyboard
 import numpy as np
@@ -10,7 +10,7 @@ import pyperclip
 
 def run_app(linspace, signal):
     
-    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], use_pages=True, pages_folder="")
+    app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], use_pages=True, pages_folder="", url_base_pathname="/3/")
 
     max_signal = np.max(signal)
     min_signal = np.min(signal)
@@ -149,7 +149,7 @@ def run_app(linspace, signal):
             ], className="g-0",style={"marginRight": "30px", "marginLeft": "30px", "marginBottom": "5px", "height": "40%"}),
         ]
 
-    dash.register_page("", path="/", path_template='/<n_cursors>', layout=layout, title="Multi Cursors") # Register the layout function as a page to use <n_cursors> in the URL
+    dash.register_page("", path="/3", path_template='/<n_cursors>', layout=layout, title="Multi Cursors") # Register the layout function as a page to use <n_cursors> in the URL
 
     app.layout = dbc.Container(dash.page_container, fluid=True, class_name="g-0")
 
@@ -243,4 +243,4 @@ def run_app(linspace, signal):
             return True
         return False
 
-    app.run(debug=False)
+    app.run(debug=True)
